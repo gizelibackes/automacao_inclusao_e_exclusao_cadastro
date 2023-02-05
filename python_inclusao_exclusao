@@ -1,0 +1,1926 @@
+import selenium
+import pyautogui
+import pyperclip
+import time
+
+#bibliotecas para automatizar consulta 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
+
+#biblioteca para delay de tempo
+from time import sleep
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
+navegador = webdriver.Safari()
+navegador.get("https://www.amigonaosecompra.com.br")
+
+time.sleep(2)
+
+navegador.maximize_window()
+
+#busca botao ok para cookies
+navegador.find_element('xpath','/html/body/main/div[11]/div/label').click()
+time.sleep(3)
+
+#busca botao quero ajudar
+navegador.find_element('xpath','/html/body/div[3]/div/span').click()
+time.sleep(3)
+
+#fecha janela quero ajudar
+navegador.find_element('xpath','/html/body/div[4]/div[2]/div/div/div/span/div/div[6]/div/div/div[2]').click()
+time.sleep(3)
+
+navegador.find_element(By.LINK_TEXT,'Entrar').click()
+time.sleep(2)
+
+#faz login
+navegador.find_element('xpath','/html/body/div/div/div/div[2]/form/div[1]').send_keys('animaliza21@gmail.com', Keys.TAB)
+time.sleep(1)
+navegador.find_element('xpath','/html/body/div/div/div/div[2]/form/div[2]').send_keys('XXXXXXXX', Keys.ENTER)
+time.sleep(2)
+
+#APAGAR AS POSTAGENS
+for i in range(27):
+    
+    #ATUALIZA PAGINA
+    navegador.refresh()
+    time.sleep(10)
+    
+    #ENCONTRA O PRIMEIRO POST E ACESSA 
+    navegador.find_element('xpath','//*[@id="grid-pet"]/div/div[1]/a').send_keys(Keys.ENTER)
+    time.sleep(10)
+
+    #CLICA EM EDITAR
+    navegador.find_element('xpath','/html/body/main/div[2]/div[2]/div[1]/div[1]/div/a[1]').send_keys(Keys.ENTER)
+    time.sleep(10)
+
+    #CLICA EM APAGAR ANIMAL 
+    navegador.find_element('xpath','/html/body/main/div[2]/div[5]/a').send_keys(Keys.ENTER)
+    time.sleep(2)
+
+    #CONFIRMA EXCLUSAO
+    navegador.switch_to.alert.accept()
+    time.sleep(2)
+    pyautogui.mouseDown()
+    time.sleep(2)
+
+    #ATUALIZA PAGINA
+    navegador.refresh()
+    time.sleep(10)
+
+#CADASTRA ANIMAIS
+for i in range(28):
+    
+    #BELA
+    if i == 0:
+        
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Bela')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('big')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 3 ANOS
+RAÇA: SRD 
+PORTE: GRANDE
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato através do WhatsApp 11997750464.
+
+Depois de enviar o questionário, entraremos em contato com você através do seu e-mail. 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_01_BELA/capa/capa_bela.jpeg')
+        time.sleep(1)
+    
+    #COSTELINHA
+    elif i == 1:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Costelinha')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS 
+RAÇA: SRD 
+PESO: 16 KILOS
+PORTE: PEQUENO/MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_07_COSTELINHA/capa_costelinha.jpeg')
+        time.sleep(1)
+        
+    #JUJU
+    elif i == 2:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Juju')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 18 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_075_JUJU/capa_juju.jpeg')
+        time.sleep(1)
+
+        
+    #MAGRELA
+    elif i == 3:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Magrela')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 3 ANOS
+RAÇA: SRD 
+PESO: 16 KILOS
+PORTE: MEDIO
+COMPORTAMENTO: MEDROSA
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_047_MAGRELA_MARROM/capa_magrela.jpeg')
+
+        time.sleep(1)
+        
+    #LEITON
+    elif i == 4:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Leiton')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 5 ANOS
+RAÇA: SRD 
+PESO: 18 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_04_LEITON/capa_leiton.jpeg')
+        time.sleep(1)
+        
+    #CARAMELA
+    elif i == 5:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Caramela')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 3 ANOS
+RAÇA: SRD 
+PESO: 18 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_076_FEMEA_MARROM/capa_caramela.jpeg')
+        time.sleep(1)
+        
+    #SNOOP
+    elif i == 6:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Snoop')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 12 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_025_SNOOP/capa_snoop.jpeg')
+        time.sleep(1)
+
+    #BEZERRA
+    elif i == 7:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Bezerra')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 12 KILOS
+PORTE: SMALL
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_03_BEZERRA/capa_bezerra.jpeg')
+        time.sleep(1)
+        
+    #COISIKA
+    elif i == 8:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('Coisika')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 10 KILOS
+PORTE: SMALL
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_05_XILICO/capa_xilico.jpeg')
+        time.sleep(1)
+        
+                
+    #CHICA
+    elif i == 9:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('CHICA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 15 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_053_MAMAE_BRANCA/capa_chica.jpeg')
+        time.sleep(1)
+
+    #CHICO
+    elif i == 10:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('CHICO')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 15 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_054_PAPAI_PELUDO/capa_chico.jpeg')
+        time.sleep(1)
+        
+    #IRMAO DA ARIEL
+    elif i == 11:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('TRITAO')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 15 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_012_IRMAO_ARIEL/capa_tritao.jpeg')
+        time.sleep(1)
+    
+    #ARIEL
+    elif i == 12:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('ARIEL')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 15 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_010_ARIEL/capa_ariel.jpeg')
+        time.sleep(1)
+        
+    #NEGUINHA
+    elif i == 13:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('NEGUINHA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 15 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_08_NEGUINHA/capa_neguinha.jpeg')
+        time.sleep(1)
+
+
+    #NEGONA
+    elif i == 14:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('FILO')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 20 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_017_NEGONA/capa_filo.jpeg')
+        time.sleep(1)
+                                                
+                                                
+    #IRMA DA NEGONA
+    elif i == 15:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('BIBI')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 20 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_016_IRMA_NEGONA/capa_bibi.jpeg')
+        time.sleep(1)                                             
+                                                
+    #IRMA DA ARIEL
+    elif i == 16:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('ATTINA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 20 KILOS
+PORTE: MEDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_011_IRMA_ARIEL/capa_attina.jpeg')
+        time.sleep(1)                                             
+                                                
+    #PEQUENA
+    elif i == 17:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('TITI')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 20 KILOS
+PORTE: PEQUENA
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_077_Pequena/capa_pequena.jpeg')
+        time.sleep(1)                                             
+        
+    #PIPA
+    elif i == 18:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('PIPA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+PESO: 20 KILOS
+PORTE: MEDIA
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_020_PIPA/capa_pipa.jpeg')
+        time.sleep(1)        
+                                                
+    #CORUJINHA
+    elif i == 19:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('CORUJINHA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Gato')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD 
+
+GATOS SERAO DOADOS APENAS PARA LARES TOTALMENTE SEGUROS, SEM ACESSO A RUA, E COM JANELAS TELADAS.
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_048_CORUJUNHA/capa_corujinha.jpeg')
+        time.sleep(1) 
+                                                
+    #FRAJOLINHA
+    elif i == 20:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('FRAJOLINHA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Gato')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 1 ANO
+RAÇA: SRD 
+
+GATOS SERAO DOADOS APENAS PARA LARES TOTALMENTE SEGUROS, SEM ACESSO A RUA, E COM JANELAS TELADAS.
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_068_frajolinha/capa_frajolinha.jpeg')
+        time.sleep(1) 
+                                                
+    #GATINHO PRETINHO 1
+    elif i == 21:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('TOM')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Gato')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 1 ANO
+RAÇA: SRD 
+
+GATOS SERAO DOADOS APENAS PARA LARES TOTALMENTE SEGUROS, SEM ACESSO A RUA, E COM JANELAS TELADAS.
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_035_MACHO_PRETINHO1/capa_pretinho1.jpeg')
+        time.sleep(1) 
+
+                                                
+    #GATINHO PRETINHO 2
+    elif i == 22:
+    
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+        
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+        
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('JERRY')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Gato')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 1 ANO
+RAÇA: SRD 
+
+GATOS SERAO DOADOS APENAS PARA LARES TOTALMENTE SEGUROS, SEM ACESSO A RUA, E COM JANELAS TELADAS.
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_036_MACHO_PRETINHO2/capa_pretinho2.jpeg')
+        time.sleep(1) 
+                   
+    #GATINHA PRETINHA
+    elif i == 23:
+
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('ALICIA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Gato')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 1 ANO
+RAÇA: SRD 
+
+GATOS SERAO DOADOS APENAS PARA LARES TOTALMENTE SEGUROS, SEM ACESSO A RUA, E COM JANELAS TELADAS.
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_037/capa.jpeg')
+        time.sleep(1) 
+        
+    #PERNALONGA
+    elif i == 24:
+
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('PERNALONGA')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD
+PORTE: MÉDIO
+PESO: 20 KILOS
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_06_PERNALONGA/capa_pernalonga.jpeg')
+        time.sleep(1) 
+        
+    #DELEGADO
+    elif i == 25:
+
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('DELEGADO')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD
+PORTE: MÉDIO
+PESO: 20 KILOS
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_019_DELEGADO/capa_delegado.jpeg')
+        time.sleep(1) 
+        
+        
+    #filhotes
+    elif i == 26:
+
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('FILHOTES')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('female')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('medium')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 30 dias
+RAÇA: SRD
+PORTE: MÉDIO
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/filhotes.jpeg')
+        time.sleep(1) 
+        
+        
+    #ZEUS
+    else:
+
+        navegador.find_element('xpath','/html/body/header/nav/div[1]/div/div[3]/div/div[1]/label/img').click()
+        time.sleep(2)
+
+        navegador.find_element('xpath','//*[@id="user-menu"]/div[2]/a[1]').click()
+        time.sleep(2)
+
+        navegador.find_element(By.CSS_SELECTOR,'#pet-form_name').send_keys('ZEUS')
+        time.sleep(1)
+        
+        especie = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_specie'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        especie.select_by_visible_text('Cachorro')
+        time.sleep(1)
+
+        sexo = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-sex'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        sexo.select_by_value('male')
+        time.sleep(1)
+        
+        idade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_age'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        idade.select_by_value('adult')
+        time.sleep(1)
+        
+        tamanho = Select(navegador.find_element(By.CSS_SELECTOR,'#pet-form_size'))
+        time.sleep(1)
+        #selecionando pelo texto visivel
+        tamanho.select_by_value('small')
+        time.sleep(1)
+        
+        pyautogui.press('DOWN', presses=10)
+        time.sleep(1)
+        
+        navegador.find_element(By.ID,'pet-form_description').send_keys(" ")
+        time.sleep(1)
+        
+        texto = f"""
+IDADE: 2 ANOS
+RAÇA: SRD
+PORTE: PEQUENO/MEDIO
+PESO: 12 KILOS
+
+VISITAS PODEM SER AGENDADAS SOMENTE APÓS A ANÁLISE E APROVAÇÃO DO QUESTIONÁRIO DE ADOÇÃO. 
+
+Para receber mais fotos e iniciar o processo de adoção responsável é preciso que você seja maior de idade e entre em contato via WhatsApp (11)997750464 , para receber o link do questionário de adoção :) 
+
+Boa sorte :)
+        """
+        pyperclip.copy(texto)
+        pyautogui.hotkey("command", "v")
+        time.sleep(1)
+        
+        #seleciona arquivo capa
+        upload_input_capa = navegador.find_element('xpath','//*[@id="pet-form_avatar"]')
+        upload_input_capa.send_keys('/Users/gizeli/Desktop/ANIMAIS/COD_02_ZEUS/capa_zeus.jpeg')
+        time.sleep(1) 
+        
+    estado = Select(navegador.find_element(By.CSS_SELECTOR,'#pet_state_id'))
+    time.sleep(1)
+    #selecionando pelo texto visivel
+    estado.select_by_value('0080b121-a063-486b-9522-b1c5566a6588')
+    time.sleep(1)
+        
+    cidade = Select(navegador.find_element(By.CSS_SELECTOR,'#pet_city_id'))
+    time.sleep(1)
+    #selecionando pelo texto visivel
+    cidade.select_by_value('8fa9d48c-a736-4f24-94bf-2c85ef556030')
+    time.sleep(1)
+        
+    castrado = navegador.find_element(By.CSS_SELECTOR,'#pet-form_castrated')
+    navegador.execute_script("arguments[0].click();", castrado)
+    time.sleep(1)
+        
+    vacinado = navegador.find_element(By.CSS_SELECTOR,'#pet-form_vaccinated')
+    navegador.execute_script("arguments[0].click();", vacinado)
+    time.sleep(1)
+        
+    vermifugado = navegador.find_element(By.CSS_SELECTOR,'#pet-form_vermifugate')
+    navegador.execute_script("arguments[0].click();", vermifugado)
+    time.sleep(1)
+        
+    docil = navegador.find_element(By.CSS_SELECTOR,'#pet-form_docile')
+    navegador.execute_script("arguments[0].click();", docil)
+    time.sleep(1)
+        
+    calmo = navegador.find_element(By.CSS_SELECTOR,'#pet-form_calm')
+    navegador.execute_script("arguments[0].click();", calmo)
+    time.sleep(1)
+        
+    brincalhao = navegador.find_element(By.CSS_SELECTOR,'#pet-form_playful')
+    navegador.execute_script("arguments[0].click();", brincalhao)
+    time.sleep(1)
+        
+    sociavel = navegador.find_element(By.CSS_SELECTOR,'#pet-form_sociable')
+    navegador.execute_script("arguments[0].click();", sociavel)
+    time.sleep(1)
+        
+    quintal = navegador.find_element(By.CSS_SELECTOR,'#pet-form_friendly_with_house_with_backyard')
+    navegador.execute_script("arguments[0].click();", quintal)
+    time.sleep(1)
+        
+    apartamento = navegador.find_element(By.CSS_SELECTOR,'#pet-form_friendly_with_apartment')
+    navegador.execute_script("arguments[0].click();", apartamento)
+    time.sleep(1)
+        
+    gatos = navegador.find_element(By.CSS_SELECTOR,'#pet-form_sociability_cats')
+    navegador.execute_script("arguments[0].click();", gatos)
+    time.sleep(1)
+        
+    desconhecidos = navegador.find_element(By.CSS_SELECTOR,'#pet-form_sociability_unknown')
+    navegador.execute_script("arguments[0].click();", desconhecidos)
+    time.sleep(1)
+        
+    cachorros = navegador.find_element(By.CSS_SELECTOR,'#pet-form_sociability_dogs')
+    navegador.execute_script("arguments[0].click();", cachorros)
+    time.sleep(1)
+        
+    criancas = navegador.find_element(By.CSS_SELECTOR,'#pet-form_sociability_children')
+    navegador.execute_script("arguments[0].click();", criancas)
+    time.sleep(1)
+        
+    #SALVAR
+    navegador.find_element(By.CSS_SELECTOR, '#pet-form-btn').send_keys(Keys.ENTER)
+    time.sleep(2)
+
+else:
+    print("Finally finished!")
+    quit()
+    
+        
